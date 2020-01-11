@@ -1,20 +1,23 @@
-// function formatInput(string) {
-//   console.log(string[0] + string[1] + string[2]);
-// }
-// console.log(formatInput(["Hello", " Arkademy", " Fighter!"]));
+const formatInput = (str, ...rest) => {
+  let result = [];
+  const arrStr = str.split(" ");
 
-// function formatInput1(string) {
-//   console.log(string[0] + string[3]);
-// }
-// console.log(formatInput1(["This is an", "Halangan", "Rintangan", " Exercise"]));
+  for (let i = 0; i < arrStr.length; i++) {
+    const isNumber = arrStr[i].match(/\d+/g);
 
-// function cek(par) {
-//   console.log("ini Parameter 1", par);
-// }
-// cek("Hello {0}{1}", "Guntur", "Fighter");
-function formatInput(data) {
-  for (var i = 0; i < data.length; i++) {
-    console.log(data[i]);
+    if (isNumber == null) {
+      result += arrStr[i] + " ";
+    }
+
+    if (isNumber != null) {
+      if (arrStr[i].includes(isNumber[0])) {
+        result += arrStr[i].replace(arrStr[i], rest[i - 1]) + " ";
+      }
+    }
   }
-}
-console.log(formatInput("Hello {0} {1}”, “Arkademian”, “Fighters!"));
+
+  return result;
+};
+
+console.log(formatInput("Hello {0} {1}", "Guntur", "Fighters!"));
+console.log(formatInput("This is an {2}", "Halangan", "Rintangan", "Exercise"));
